@@ -1,4 +1,4 @@
-module github.com/oam-dev/oam-go-sdk
+module github.com/chenbilong/oam-go-sdk
 
 go 1.13
 
