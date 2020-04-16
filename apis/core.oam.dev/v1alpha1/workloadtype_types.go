@@ -36,11 +36,13 @@ type WorkloadTypeSpec struct {
 
 	// The group that this workload type belongs to (e.g. core.hydra.io)
 	//Group string `json:"group"`
-
+	// +optional
 	Names Names `json:"names"`
 
 	// Workload type, GVK
-	Group   string `json:"group"`
+	// +optional
+	Group string `json:"group"`
+	// +optional
 	Version string `json:"version"`
 
 	// The workload type's settings options.

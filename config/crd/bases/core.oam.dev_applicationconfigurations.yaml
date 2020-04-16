@@ -4,7 +4,7 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.2.5
+    controller-gen.kubebuilder.io/version: v0.2.4
   creationTimestamp: null
   name: applicationconfigurations.core.oam.dev
 spec:
@@ -197,6 +197,34 @@ spec:
                 Unknown: For some reason the state of the Application could not be
                 obtained, typically due to an error in controller.'
               type: string
+            resources:
+              description: Resource status array for all resources constitute this
+                application. Resource is k8s build-in or CRD object, only show cswt
+                level.
+              items:
+                description: ResourceStatus is a generic status holder for resources
+                properties:
+                  apiVersion:
+                    description: ApiVersion of resource
+                    type: string
+                  component:
+                    description: Component instance name
+                    type: string
+                  kind:
+                    description: Kind of resource
+                    type: string
+                  name:
+                    description: NamespaceName of resource
+                    type: string
+                  role:
+                    description: 'Role of resource in the component. Value: workload,
+                      trait'
+                    type: string
+                  status:
+                    description: Status of resource
+                    type: string
+                type: object
+              type: array
           type: object
       type: object
   version: v1alpha1

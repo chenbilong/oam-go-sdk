@@ -72,6 +72,11 @@ type ApplicationConfigurationStatus struct {
 	// +patchMergeKey=type
 	// +patchStrategy=merge
 	Conditions []ApplicationCondition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+
+	// Resource status array for all resources constitute this application.
+	// Resource is k8s build-in or CRD object, only show cswt level.
+	// +optional
+	Resources []ResourceStatus `json:"resources,omitempty"`
 }
 
 // ApplicationPhase is a label for the condition of a Application at the current time.
@@ -105,6 +110,23 @@ type ModuleStatus struct {
 	// ComponentConfiguration groupVersion
 	GroupVersion string `json:"groupVersion,omitempty"`
 	// Status. Values: Progressing, Ready, Failed
+	Status string `json:"status,omitempty"`
+}
+
+// ResourceStatus is a generic status holder for resources
+// +k8s:deepcopy-gen=true
+type ResourceStatus struct {
+	// NamespaceName of resource
+	NamespacedName string `json:"name,omitempty"`
+	// Kind of resource
+	Kind string `json:"kind,omitempty"`
+	// ApiVersion of resource
+	ApiVersion string `json:"apiVersion,omitempty"`
+	// Component instance name
+	Component string `json:"component,omitempty"`
+	// Role of resource in the component. Value: workload, trait
+	Role string `json:"role,omitempty"`
+	// Status of resource
 	Status string `json:"status,omitempty"`
 }
 

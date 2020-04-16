@@ -21,9 +21,11 @@ import (
 
 // TraitSpec defines the desired state of Trait
 type TraitSpec struct {
-	Group   string `json:"type"`
+	// +optional
+	Group string `json:"type"`
+	// +optional
 	Version string `json:"version"`
-
+	// +optional
 	Names Names `json:"names"`
 
 	// The list of workload types that this trait applies to. "*" means any workload type
